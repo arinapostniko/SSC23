@@ -92,20 +92,23 @@ struct WordJumbleView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
                 
-                Button("Submit") {
+                Group {
+                    Text("Submit")
+                        .padding()
+                        .padding(.horizontal, 45)
+                        .foregroundColor(.white)
+                        .background(
+                            LinearGradient(
+                                colors: [.purple, .blue],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .cornerRadius(100)
+                }
+                .onTapGesture {
                     checkAnswer()
                 }
-                .padding()
-                .padding(.horizontal, 45)
-                .foregroundColor(.white)
-                .background(
-                    LinearGradient(
-                        colors: [.purple, .blue],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .cornerRadius(100)
                 
                 Text("Score: \(correctAnswers)")
                     .font(.largeTitle)

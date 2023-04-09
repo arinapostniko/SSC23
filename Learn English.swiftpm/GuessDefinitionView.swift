@@ -82,21 +82,26 @@ struct GuessDefinitionView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
                 
-                Button("Submit") {
-                    checkAnswer()
-                    nextWord()
+                Group {
+                    Text("Submit")
+                        .padding()
+                        .padding(.horizontal, 45)
+                        .foregroundColor(.white)
+                        .background(
+                            LinearGradient(
+                                colors: [.purple, .blue],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .cornerRadius(100)
                 }
-                .padding()
-                .padding(.horizontal, 45)
-                .foregroundColor(.white)
-                .background(
-                    LinearGradient(
-                        colors: [.purple, .blue],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .cornerRadius(100)
+                .onTapGesture {
+                    if userAnswer != ""{
+                        checkAnswer()
+                        nextWord()
+                    } else { return }
+                }
                 
                 Text("Score: \(score)")
                     .font(.largeTitle)

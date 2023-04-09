@@ -23,7 +23,7 @@ struct ContentView: View {
                             self.start = UnitPoint(x: -4, y: 20)
                             self.start = UnitPoint(x: 4, y: 0)
                         })
-                        .ignoresSafeArea()
+//                        .ignoresSafeArea()
                     VStack {
                         Text("Learn English")
                             .font(.system(size: 45))

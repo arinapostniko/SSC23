@@ -65,25 +65,26 @@ struct GrammarQuizView: View {
                 if !quizFinished {
                     QuestionView(question: questions[currentQuestionIndex], userAnswerIndex: $userAnswerIndex)
                         .padding()
-                    
-                    Button(action: {
-                        checkAnswer()
-                        nextQuestion()
-                    }) {
+                    Group {
                         Text("Next")
+                            .padding()
+                            .padding(.horizontal, 40)
+                            .foregroundColor(.white)
+                            .background(
+                                LinearGradient(
+                                    colors: [.purple, .blue],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .cornerRadius(100)
                     }
-                    .disabled(userAnswerIndex == nil)
-                    .padding()
-                    .padding(.horizontal, 40)
-                    .foregroundColor(.white)
-                    .background(
-                        LinearGradient(
-                            colors: [.purple, .blue],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .cornerRadius(100)
+                    .onTapGesture {
+                        if userAnswerIndex != nil {
+                            checkAnswer()
+                            nextQuestion()
+                        } else { return }
+                    }
                 } else {
                     Text("Quiz finished! Score: \(score)/\(questions.count)")
                         .font(.largeTitle)
@@ -96,6 +97,26 @@ struct GrammarQuizView: View {
                             )
                         )
                         .padding()
+                    
+                    Group {
+                        Text("Try Again")
+                            .padding()
+                            .padding(.horizontal, 40)
+                            .foregroundColor(.white)
+                            .background(
+                                LinearGradient(
+                                    colors: [.purple, .blue],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .cornerRadius(100)
+                    }
+                    .onTapGesture {
+                        self.currentQuestionIndex = 0
+                        self.score = 0
+                        self.quizFinished = false
+                    }
                 }
             }
         }
