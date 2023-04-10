@@ -166,7 +166,7 @@ struct QuestionView: View {
                 .foregroundColor(.black)
                 .padding(.bottom, 10)
             
-            ForEach(0..<question.options.count) { index in
+            ForEach(0..<question.options.count, id: \.self) { index in
                 Button(action: {
                     userAnswerIndex = index
                 }) {
